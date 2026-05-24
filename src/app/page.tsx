@@ -52,8 +52,9 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600/20 border border-purple-500/30 mb-6">
-                <Lightning className="w-4 h-4 text-purple-400" />
-                <span className="text-sm text-purple-300">Tatum x Sui x Walrus Hackathon</span>
+                <Lightning className="w-4 h-4 text-cyan-400" />
+                <span className="text-sm text-cyan-300">Tatum x Sui x Walrus Hackathon</span>
+                <span className="ml-2 px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-xs font-semibold">Mainnet</span>
               </div>
 
               <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">

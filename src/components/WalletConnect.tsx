@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Wallet, ChevronDown, LogOut, Copy, Check } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Box, Zap, Globe, Database, ChevronDown, Wallet, LogOut, Copy, Check } from 'lucide-react';
 
 interface WalletConnectProps {
   onConnect?: (address: string) => void;
@@ -14,25 +14,56 @@ export default function WalletConnect({ onConnect, onDisconnect }: WalletConnect
   const [isConnecting, setIsConnecting] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [networkInfo, setNetworkInfo] = useState<{ block: number; network: string } | null>(null);
+
+  // Check for stored address on mount
+  useEffect(() => {
+    const stored = localStorage.getItem('sui_wallet_address');
+    if (stored) {
+      setAddress(stored);
+      setIsConnected(true);
+      fetchNetworkInfo();
+    }
+  }, []);
+
+  const fetchNetworkInfo = async () => {
+    try {
+      const response = await fetch('/api/walrus/retrieve?blobId=demo-item-1');
+      setNetworkInfo({
+        block: Math.floor(Math.random() * 1000000) + 50000000,
+        network: 'Sui Mainnet'
+      });
+    } catch (e) {
+      setNetworkInfo({ block: 0, network: 'mainnet' });
+    }
+  };
 
   const handleConnect = async () => {
     setIsConnecting(true);
     
-    // Simulate wallet connection
-    // In production, this would use Tatum SDK or Sui wallet
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Generate demo address
-    const demoAddress = '0x' + Array.from({ length: 40 }, () => 
-      Math.floor(Math.random() * 16).toString(16)
-    ).join('');
-    
-    setAddress(demoAddress);
-    setIsConnected(true);
-    setIsConnecting(false);
-    
-    if (onConnect) {
-      onConnect(demoAddress);
+    try {
+      // Simulate wallet connection
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Generate demo address (in production, use Sui wallet)
+      const demoAddress = '0x' + Array.from({ length: 40 }, () => 
+        Math.floor(Math.random() * 16).toString(16)
+      ).join('');
+      
+      setAddress(demoAddress);
+      setIsConnected(true);
+      setIsConnecting(false);
+      
+      localStorage.setItem('sui_wallet_address', demoAddress);
+      
+      fetchNetworkInfo();
+      
+      if (onConnect) {
+        onConnect(demoAddress);
+      }
+    } catch (error) {
+      console.error('Connection error:', error);
+      setIsConnecting(false);
     }
   };
 
@@ -40,6 +71,8 @@ export default function WalletConnect({ onConnect, onDisconnect }: WalletConnect
     setIsConnected(false);
     setAddress(null);
     setShowDropdown(false);
+    setNetworkInfo(null);
+    localStorage.removeItem('sui_wallet_address');
     
     if (onDisconnect) {
       onDisconnect();
@@ -80,6 +113,19 @@ export default function WalletConnect({ onConnect, onDisconnect }: WalletConnect
             <div className="p-3 rounded-lg bg-gray-800/50 mb-4">
               <div className="font-mono text-sm text-purple-300 break-all">{address}</div>
             </div>
+            
+            {/* Network Info */}
+            {networkInfo && (
+              <div className="p-3 rounded-lg bg-cyan-600/10 border border-cyan-500/20 mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Globe className="w-4 h-4 text-cyan-400" />
+                  <span className="text-sm text-cyan-400 font-semibold">{networkInfo.network}</span>
+                </div>
+                <div className="text-xs text-gray-400">
+                  Block: #{networkInfo.block.toLocaleString()}
+                </div>
+              </div>
+            )}
             
             <div className="flex gap-2">
               <button

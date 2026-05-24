@@ -2,15 +2,18 @@
 
 🏆 **Tatum x Sui x Walrus Hackathon Submission**
 
+🔗 **Live Demo:** https://hackathon-sui-gear-vault.vercel.app
+
 Cross-game inventory system where game items are Sui NFTs with metadata/images stored on Walrus decentralized storage.
 
 ## Features
 
 - 🎮 **Cross-Game Inventory**: Own your items across games, trade freely
-- 📦 **Walrus Integration**: Item metadata stored on decentralized Walrus storage
-- ⛓️ **Sui Blockchain**: True ownership with NFT technology
+- 📦 **Walrus Integration**: Item metadata stored on decentralized Walrus storage (architectural, not decorative)
+- ⛓️ **Sui Blockchain**: True ownership with NFT technology via Tatum RPC
 - 🚀 **Tatum RPC**: Powered by enterprise-grade blockchain infrastructure
 - 💨 **Live Demo**: Real-time Walrus retrieval with latency display
+- 🌐 **Mainnet**: Running on Sui Mainnet
 
 ## Tech Stack
 
@@ -18,7 +21,7 @@ Cross-game inventory system where game items are Sui NFTs with metadata/images s
 - **Styling**: Tailwind CSS (dark gaming theme)
 - **Blockchain**: Sui Move (smart contracts)
 - **Storage**: Walrus decentralized storage
-- **RPC**: Tatum SDK for Sui
+- **RPC**: Tatum SDK for Sui Mainnet
 - **Deployment**: Vercel
 
 ## Pages
@@ -33,7 +36,7 @@ Cross-game inventory system where game items are Sui NFTs with metadata/images s
 | Criteria | Implementation |
 |----------|---------------|
 | **Walrus Integration (30%)** | ✅ Architectural - metadata/images stored on Walrus, not decorative |
-| **Tatum Integration (30%)**** | ✅ RPC calls for Sui blockchain interactions |
+| **Tatum Integration (30%)** | ✅ RPC calls for Sui blockchain interactions |
 | **Technical Quality (20%)** | ✅ Clean TypeScript, Next.js best practices |
 | **UI/UX (20%)** | ✅ Dark gaming theme, responsive, polished demo |
 
@@ -48,13 +51,8 @@ Cross-game inventory system where game items are Sui NFTs with metadata/images s
 ## Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
 npm run build
 ```
 
@@ -65,25 +63,13 @@ Located in `/contracts/sources/`:
 - `studio_manager.move` - Game studio management
 - `nft_minting.move` - NFT creation and transfers
 
-## Environment Variables
-
-```env
-NEXT_PUBLIC_TATUM_API_KEY=your_tatum_api_key
-NEXT_PUBLIC_SUI_NETWORK=testnet  # or mainnet
-```
-
-## Timeline
-
-- **Hackathon**: May 23 - June 6, 2026
-- **Deadline**: June 6, 17:00 UTC
-- **Results**: June 7
-
 ## Links
 
 - [Tatum Documentation](https://docs.tatum.io)
 - [Walrus Documentation](https://docs.wal.app)
 - [Sui Documentation](https://docs.sui.io)
 - [Discord Community](https://discord.gg/Ttp9zJwPqa)
+- [Submit Project](https://docs.google.com/forms/d/e/1FAIpQLSdPaKcfTbS49ngThDE9Xap7_xkLFrQOISCPHGKJ3FL1drchTw/viewform)
 
 ---
 

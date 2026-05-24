@@ -1,15 +1,15 @@
 import { Item, WalletState } from './types';
 
-// Tatum Sui RPC endpoint
-const TATUM_SUI_RPC = 'https://sui-rpc-mainnet.tatum.io';
+// Tatum Sui RPC endpoints
+const TATUM_SUI_MAINNET_RPC = 'https://sui-rpc-mainnet.tatum.io';
 const TATUM_SUI_TESTNET_RPC = 'https://sui-rpc-testnet.tatum.io';
 
 // Initialize with API key from environment
-const API_KEY = process.env.NEXT_PUBLIC_TATUM_API_KEY || '';
+const API_KEY = process.env.NEXT_PUBLIC_TATUM_API_KEY || 't-6a11dde27f2354aab3788300-31c6272d39924bd2b7a81358';
 
 // Get current network
-const NETWORK = process.env.NEXT_PUBLIC_SUI_NETWORK || 'testnet';
-const RPC_URL = NETWORK === 'mainnet' ? TATUM_SUI_RPC : TATUM_SUI_TESTNET_RPC;
+const NETWORK = process.env.NEXT_PUBLIC_SUI_NETWORK || 'mainnet';
+const RPC_URL = NETWORK === 'mainnet' ? TATUM_SUI_MAINNET_RPC : TATUM_SUI_TESTNET_RPC;
 
 // Wallet state storage (in-memory for demo)
 let currentMnemonic: string | null = null;
